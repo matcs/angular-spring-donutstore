@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Pedidos</title>
+</head>
+<body>
+	<span th:text="${cliente.idCliente}"></span>
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Endereço</th>
+				<th>Telefone</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><span th:text="${cliente.nomeCliente}"></span></td>
+			<td><span th:text="${cliente.enderecoCliente}"></span></td>
+			<td><span th:text="${cliente.telefoneCliente}"></span></td>
+		</tr>	
+	</table>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Sabor</th>
+				<th>Preço</th>
+			</tr>
+		</thead>
+		<tr th:each="sabor:${sabor}">
+			<td><span th:text="${sabor.nomeSabor}"></span></td>
+			<td><span th:text="${sabor.preco}"></span></td>
+		</tr>	
+	</table>
+	
+
+</body>
+</html>

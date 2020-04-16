@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Pizza Hut</title>
+</head>
+<body>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Sabor</th>
+				<th>Preço</th>
+			</tr>
+		</thead>
+		<tr th:each="sabor:${sabor}">
+			<td><span th:text="${sabor.nomeSabor}"></span></td>
+			<td><span th:text="${sabor.preco}"></span></td>
+		</tr>	
+	</table>
+	
+	<a href="clientes">Clientes</a>
+
+</body>
+</html>
