@@ -1,0 +1,16 @@
+<table>
+
+    <thead>
+        <th>Nome</th>
+        <th>Preço</th>
+    </thead>
+
+    <tr *ngFor="let sabor of sabores | async">
+        <td>{{sabor.nomeSabor}}</td>
+        <td>{{sabor.preco}}</td>
+        <td>
+            <button (click)="saborDetails(sabor.idSabor)">Detalhes</button>
+        </td>
+    </tr>
+
+</table>

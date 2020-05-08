@@ -1,0 +1,12 @@
+<div>
+    <form (ngSubmit)="onSubmit()">
+        <label for="name">Nome do Sabor</label>
+        <input type="text" class="form-control" id="nomeSabor" required [(ngModel)]="sabor.nomeSabor" name="nomeSabor">
+
+        <label for="number">Preço</label>
+        <input type="text" class="form-control" id="preco" required [(ngModel)]="sabor.preco" name="preco">
+
+        <button type="submit">Salvar</button>
+
+    </form>
+</div>

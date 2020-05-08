@@ -1,11 +1,9 @@
 package com.pizzaria.Repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pizzaria.Model.Cliente;
 import com.pizzaria.Model.Pedido;
-import com.pizzaria.Model.Sabor;
 
-public interface PedidoRepository extends CrudRepository<Pedido, String>{
+public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 	Pedido findByIdPedido(long pedido);
 }

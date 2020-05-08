@@ -1,0 +1,35 @@
+<h1>Cadastro</h1>
+<div class="main">
+
+  <table>
+
+    <thead>
+        <th>Nome</th>
+        <th>Preço</th>
+    </thead>
+
+    <tr *ngFor="let sabor of sabores | async">
+        <td>{{sabor.nomeSabor}}</td>
+        <td>{{sabor.preco}}</td>
+        <td>
+          <button (click)="deleteSabor(sabor.idSabor)">Excluir</button>
+      </td>
+    </tr>
+
+  </table>
+
+
+  <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Nome Sabor</label>
+        <input type="text" class="form-control" id="nomeSabor" required [(ngModel)]="sabor.nomeSabor" name="nomeSabor">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Preço</label>
+        <input type="text" class="form-control" id="preco" required [(ngModel)]="sabor.preco" name="preco">
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

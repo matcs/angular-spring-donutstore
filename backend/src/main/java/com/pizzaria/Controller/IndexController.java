@@ -1,57 +1,101 @@
 package com.pizzaria.Controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.pizzaria.Model.Cliente;
 import com.pizzaria.Model.Sabor;
 import com.pizzaria.Repository.ClienteRepositoy;
-import com.pizzaria.Repository.PedidoRepository;
 import com.pizzaria.Repository.SaborRepository;
 
-@Controller
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
 public class IndexController {
 	
 	@Autowired(required = true)
-	SaborRepository sr;
+	SaborRepository sr;	
 	
 	@Autowired(required = true)
 	ClienteRepositoy cr;
 	
-	@Autowired(required = true)
-	PedidoRepository pr;
 	
-	
-	@RequestMapping("/")
-	public ModelAndView sabores() {
-		ModelAndView mv = new ModelAndView("/pages/index");
-		Iterable<Sabor> sabor = sr.findAll();
-		mv.addObject("sabor",sabor);
-		return mv;
+	//PROCURA TODOS OS SABORES
+	@GetMapping("/sabores")
+	public List<Sabor> getAllSabores() {
+		return sr.findAll();
 	}
 	
-	@RequestMapping("/clientes")
-	public ModelAndView clientes() {
-		ModelAndView mv = new ModelAndView("/pages/clientes");
-		Iterable<Cliente> cliente = cr.findAll();
-		mv.addObject("cliente",cliente);
-		return mv;
+	//PROCURA UM SABOR EM ESPECIFICO
+	@GetMapping("/sabor/{id}")
+	public ResponseEntity<Sabor> findSaborById(@PathVariable(value = "id") Long idSabor){
+		Sabor sabor = sr.findByIdSabor(idSabor);
+		return ResponseEntity.ok().body(sabor);
 	}
 	
-	@RequestMapping("/{idCliente}")
-	public ModelAndView pedidoFazer (@PathVariable("idCliente") long idCliente) {
-		Cliente cliente = cr.findByIdCliente(idCliente);
-		ModelAndView mv = new ModelAndView("pages/pedidos");
-		mv.addObject("cliente",cliente);
+	//REMOVER PARA UMA PARTE PRÓPRIA
+	@GetMapping("/clientes")
+	public List<Cliente> getAllClientes() {
+		return cr.findAll();
+	}
+	
+	//CRIA UM NOVO SABOR
+	@PostMapping("/salvarSabor")
+	public Sabor criarSabor(@RequestBody Sabor sabor) {
+		return sr.save(sabor);
+	}
+	
+	//ATUALIZA SABOR
+	@PutMapping("/sabor/{id}")
+	public ResponseEntity<Sabor> updateSabor(@PathVariable(value = "id") Long idSabor,
+			@Valid @RequestBody Sabor findSaborById){
+		Sabor sabor = sr.findByIdSabor(idSabor);
 		
-		//ENCONTRAR SABORES 
-		Iterable<Sabor> sabor = sr.findAll();
-		mv.addObject("sabor",sabor);
+		sabor.setNomeSabor(findSaborById.getNomeSabor());
+		sabor.setPreco(findSaborById.getPreco());
+	
+		final Sabor updateSabor = sr.save(sabor);
 		
-		return mv;
+		return ResponseEntity.ok(updateSabor);
 	}
 	
+	
+	//DELETA UM SABOR DESEJADO
+	@DeleteMapping("/sabor/{id}")
+	public Map<String, Boolean> deletarSabor(@PathVariable(value = "id") Long idSabor) {
+		Sabor sabor = sr.findByIdSabor(idSabor);
+		sr.delete(sabor);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", true);
+		return response;
+	}
+	
+	
+	
+//	@RequestMapping("/{idCliente}")
+//	public ModelAndView pedidoFazer (@PathVariable("idCliente") long idCliente) {
+//		Cliente cliente = cr.findByIdCliente(idCliente);
+//		ModelAndView mv = new ModelAndView("pages/pedidos");
+//		mv.addObject("cliente",cliente);
+//		
+//		//ENCONTRAR SABORES 
+//		Iterable<Sabor> sabor = sr.findAll();
+//		mv.addObject("sabor",sabor);
+//		
+//		return mv;
+//	}
+//	
 }
