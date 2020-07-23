@@ -1,9 +1,9 @@
-package com.pizzaria.Repository;
+package com.donutstore.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pizzaria.Model.Cliente;
+import com.donutstore.Model.Cliente;
 
 public interface ClienteRepositoy extends JpaRepository<Cliente, Long> {
-	Cliente findByIdCliente(long idCliente);
+	Cliente findByIdCliente(Long idCliente);
 }
