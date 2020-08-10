@@ -1,0 +1,31 @@
+div.card-deck{
+    height: 100%;
+    margin:0px 10px 0px 10px;
+    padding-top: 30px;
+}
+
+div.card-deck div.card{
+    height: 24rem;
+    width: 10rem;
+    border: black 1px solid;
+    border-radius: 10px;
+    text-align: justify;
+    font-family: 'Lato', sans-serif;
+}
+
+div.card-deck div.card img{
+    height: 15rem;
+    width: 100%;
+    border: black 1px solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+div.card-deck div.card h5{
+    margin: auto;
+}
+
+.btn.btn-outline-success{
+    align-self: start;
+    margin-left: 100px;
+}

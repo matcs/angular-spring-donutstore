@@ -1,6 +1,31 @@
-<a routerLink="sabores">Sabores</a>
-<br/>
-<a routerLink="clientes">Clientes</a>
-<br/>
-<a routerLink="registerSabor">Registro de Sabores</a>
+<nav class="navbar navbar-expand-lg">
+    <div class="nav-brand">
+      <img src="../assets/img/donut-logo.png" alt="donut-boy" srcset="">
+      <span>Donut Store</span>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <a class="nav-item nav-link"
+            [routerLink]="['/']" routerLinkActive="router-link-active">Home
+        </a>
+        <a class="nav-item nav-link"
+            [routerLink]="['/donuts']" routerLinkActive="router-link-active">Donuts        
+        </a>
+    </div>
+    <div class="cart">
+      <h3>{{this.items.length}}</h3>
+      <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><i class="material-icons">shopping_cart</i></a>
+    </div>
+    <div class="loginNaoRealizado" *ngIf="!loginCheck()">
+      <p>Bem vindo!</p>
+      <u><a class="nav-item nav-link"
+        [routerLink]="['/loginoregister']" routerLinkActive="router-link-active">Faça login ou cadastro</a></u>
+    </div>
+
+    <div *ngIf="loginCheck()" class="logout-container">
+      <p>Olá, <br> {{getNomeCLiente()}}</p>
+      <ng-container *ngIf="loginCheck()">
+        <button type="button" (click)="logout()" class="btn btn-danger btn-sm">Logout</button>
+      </ng-container>
+    </div>
+</nav>
 <router-outlet></router-outlet>

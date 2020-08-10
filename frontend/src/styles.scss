@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+nav.navbar.navbar-expand-lg{
+    background-color: #fa403ad5;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    height: 105px;
+}
+nav.navbar.navbar-expand-lg div.nav-brand img{
+    width: 80px;
+    margin-top: -20px;    
+}
+
+nav.navbar.navbar-expand-lg span{
+    margin-right: 30px;
+    font-size: 50px;
+}
+
+nav.navbar.navbar-expand-lg div.collapse.navbar-collapse a{
+    color: white;
+    font-size: 25px;
+    margin-top: -20px;
+    padding-right: 25px;
+    padding-bottom: 0px;
+}
+
+.navbar-brand{
+    cursor: default;
+}
+
+.form-login{
+    margin-top: 10px;
+    border: 10px;
+}
+.cart{
+    display: flex;
+    margin-right: 35px;
+}
+
+.cart h3{
+    color: rgb(27, 27, 27);
+    margin-top: -5px;
+    font-size: 30px;
+}
+.cart .material-icons {
+    color:  rgb(27, 27, 27);
+    margin-top: 0px;
+    font-size: 30px; 
+}
+
+.loginNaoRealizado{
+    font-size: 19px;
+}
+
+.loginNaoRealizado p{
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.loginNaoRealizado a{
+    text-align: center;
+    color: rgb(27, 27, 27);
+    margin-bottom: 0px;
+}

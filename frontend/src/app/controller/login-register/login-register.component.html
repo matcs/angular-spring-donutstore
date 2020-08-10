@@ -1,0 +1,50 @@
+<div class="login-register-container">
+    <div class="login">
+        <ng-container *ngIf="!loginCheck()">
+            <form class="form-login" (ngSubmit)="login()">
+                <h2>Login</h2>
+                    <input type="text" name="cliente" [(ngModel)]="cliente.email" placeholder="E-mail">
+                    <br/>
+                    <input type="password" name="senha" [(ngModel)]="cliente.senha" placeholder="Senha">
+                <div class="button-container">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+    <div class="register">
+        <ng-container *ngIf="!loginCheck()">
+            <form class="form-login" (ngSubmit)="register()" autocomplete="off">
+                <div class="column1">
+                    <h2>Cadastro</h2>
+                    <input type="text" name="nome" required [(ngModel)]="clienteRegister.nomeCliente" placeholder="Nome">
+                        <br/>
+                    <input type="text" name="email" required [(ngModel)]="clienteRegister.email" placeholder="E-mail">
+                        <br/>
+                    <input type="text" name="senha" required [(ngModel)]="clienteRegister.senha" placeholder="Senha">
+                        <br/>
+                    <input type="number" name="telefone" required [(ngModel)]="clienteRegister.telefone" placeholder="Telefone">
+                        <br/>
+                    <input type="text" name="Logradouro" required [(ngModel)]="clienteRegister.logradouro" placeholder="Logradouro">
+                        <br/>
+                </div>
+                <div class="column2">
+                    <input type="text" name="Rua" required [(ngModel)]="clienteRegister.rua" placeholder="Rua">
+                        <br/>
+                    <input type="number" name="numero" required [(ngModel)]="clienteRegister.numero" placeholder="Numero">
+                        <br/>
+                    <input type="text" name="bairro" required [(ngModel)]="clienteRegister.bairro" placeholder="Bairro">
+                        <br/>
+                    <input type="text" name="cidade" required [(ngModel)]="clienteRegister.cidade" placeholder="Cidade">
+                        <br/>
+                    <input type="text" name="estado" required [(ngModel)]="clienteRegister.estado" placeholder="Estado">
+                        <br/>
+                    <div class="button-container">
+                        <button type="submit" class="btn btn-success">Cadastro</button>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+
+</div>

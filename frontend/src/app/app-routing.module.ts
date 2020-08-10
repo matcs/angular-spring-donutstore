@@ -1,17 +1,22 @@
-import { UpdateSaborComponent } from './controller/update-sabor/update-sabor.component';
-import { DetailsSaborComponent } from './controller/details-sabor/details-sabor.component';
-import { CadastroSaborComponent } from './controller/cadastro-sabor/cadastro-sabor.component';
-import { ListaClientesComponent } from './controller/lista-clientes/lista-clientes.component';
-import { ListaSaborComponent } from './controller/lista-sabor/lista-sabor.component';
+import { ListaDonutComponent } from './controller/donut-lista/donut-lista.component';
+import { HomeComponent } from './controller/home/home.component';
+import { CartComponent } from './controller/cart/cart.component';
+import { LoginRegisterComponent } from './controller/login-register/login-register.component';
+import { DonutDetailsComponent } from './controller/donut-details/donut-details.component'
+import { DonutCadastroComponent } from './controller/donut-cadastro/donut-cadastro.component';
+import { ListaClientesComponent } from './controller/cliente-lista/cliente-lista.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [  
-  {path: 'sabores', component: ListaSaborComponent},
+  {path:'home', component: HomeComponent},
+  {path:'', redirectTo: 'home', pathMatch: 'full' },
+  {path: 'donuts', component: ListaDonutComponent},
+  {path: 'cart', component: CartComponent},
   {path: 'clientes', component: ListaClientesComponent},
-  {path: 'registerSabor', component: CadastroSaborComponent},
-  {path: 'details/:id', component: DetailsSaborComponent },
-  {path: 'update/:id', component: UpdateSaborComponent}
+  {path: 'registerSabor', component: DonutCadastroComponent},
+  {path: 'details/:id', component: DonutDetailsComponent },
+  {path: 'loginoregister', component: LoginRegisterComponent},
 ];
 
 @NgModule({

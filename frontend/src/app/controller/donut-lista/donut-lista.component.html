@@ -1,0 +1,12 @@
+<div class="card-deck">
+    <div class="card" *ngFor="let donut of donuts | async">
+      <img class="card-img-top" src="../../../assets/img/Donuts-Caseiro.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{donut.nomeSabor}}</h5>
+        <span class="text-muted">${{donut.preco.toFixed(2)}}</span>
+        <br>
+        <button type="button" class="btn btn-outline-info" (click)="donutsDetails(donut.idDonut)">Detalhes</button>
+        <button type="button" class="btn btn-outline-success" (click)="addCart(donut)">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
