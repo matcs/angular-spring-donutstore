@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class CompraProduto {
 	
@@ -15,12 +18,15 @@ public class CompraProduto {
 	private long idCompraProduto;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	private Cliente idCliente;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	private Compra idCompra;
 	
 	@OneToOne
+	@Cascade(CascadeType.ALL)
 	private Donut idDonut;
 
 	public CompraProduto() { 

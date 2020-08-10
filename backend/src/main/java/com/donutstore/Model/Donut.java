@@ -27,20 +27,24 @@ public class Donut {
 	
 	@Column(columnDefinition = "MEDIUMBLOB")
 	private byte[] imagem;
+	
+	public Donut() { }
+	
+	public Donut(long idDonut, boolean status, String nomeSabor, float preco, String descricao, byte[] imagem) {
+		super();
+		this.idDonut = idDonut;
+		this.status = status;
+		this.nomeSabor = nomeSabor;
+		this.preco = preco;
+		this.descricao = descricao;
+		this.imagem = imagem;
+	}
 
 	public long getIdDonut() {
 		return idDonut;
 	}
 
 	public void setIdDonut(long idDonut) {
-		this.idDonut = idDonut;
-	}
-
-	public long getIdSabor() {
-		return idDonut;
-	}
-
-	public void setIdSabor(long idDonut) {
 		this.idDonut = idDonut;
 	}
 

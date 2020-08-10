@@ -25,30 +25,33 @@ import com.donutstore.Repository.DonutRepository;
 public class DonutController {
 	
 	@Autowired(required = true)
-	private DonutRepository dr;	
+	private DonutRepository dr;
 	
 	//PROCURA E RETORNA TODOS OS SABORES
 	@GetMapping("/donuts")
-	public List<Donut> getAllSabores() {
+	public List<Donut> getAllDonut() {
 		return dr.findAll();
 	}
 	
 	//PROCURA UM SABOR EM ESPECIFICO
 	@GetMapping("/donuts/{id}")
-	public ResponseEntity<Donut> findSaborById(@PathVariable(value = "id") Long idDonut){
+	public ResponseEntity<Donut> findDonuById(
+			@PathVariable(value = "id") Long idDonut){
 		Donut donut = dr.findByIdDonut(idDonut);
 		return ResponseEntity.ok().body(donut);
 	}
 	
 	//CRIA UM NOVO SABOR
-	@PostMapping("/donut")
-	public Donut criarSabor(@RequestBody Donut sabor) {
+	@PostMapping("/donuts")
+	public Donut criarDonut(
+			@RequestBody Donut sabor) {
 		return dr.save(sabor);
 	}
 	
 	//ATUALIZA SABOR
 	@PutMapping("/donuts/{id}")
-	public ResponseEntity<Donut> updateSabor(@PathVariable(value = "id") Long idDonut,
+	public ResponseEntity<Donut> updateDonut(
+			@PathVariable(value = "id") Long idDonut,
 			@Valid @RequestBody Donut findDonutById){
 		Donut sabor = dr.findByIdDonut(idDonut);
 		
@@ -62,7 +65,8 @@ public class DonutController {
 	
 	//DELETA UM SABOR DESEJADO
 	@DeleteMapping("/donuts/{id}")
-	public Map<String, Boolean> deletarSabor(@PathVariable(value = "id") Long idDonut) {
+	public Map<String, Boolean> deletarDonut(
+			@PathVariable(value = "id") Long idDonut) {
 		Donut sabor = dr.findByIdDonut(idDonut);
 		dr.delete(sabor);
 		Map<String, Boolean> response = new HashMap<>();

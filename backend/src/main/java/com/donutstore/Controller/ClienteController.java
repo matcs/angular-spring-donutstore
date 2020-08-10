@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.donutstore.Model.Cliente;
-import com.donutstore.Repository.ClienteRepositoy;
+import com.donutstore.Repository.ClienteRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class ClienteController {
-		
+	
 	@Autowired(required = true)
-	private ClienteRepositoy cr;
+	private ClienteRepository cr;
 	
 	//PROCURA E RETORNA TODOS OS CLIENTES
 	@GetMapping("/cliente")
@@ -34,47 +34,55 @@ public class ClienteController {
 	}
 	
 	//PROCURA E ENCONTRA UM CLIENTE ESPECIFICO
-	@GetMapping("/cliente/{idCliente}")
-	public ResponseEntity<Cliente> clienteId(@PathVariable(value = "idCliente") Long idCliente ){
-		Cliente cliente = cr.findByIdCliente(idCliente);
-		return ResponseEntity.ok().body(cliente);
+	@PostMapping("/cliente/login")
+	public ResponseEntity<Cliente> loginCliente(
+			@RequestBody Cliente clienteBody){
+		Cliente cliente = cr.findByEmail(clienteBody.getEmail());
+		if(cliente.getSenha().equals(clienteBody.getSenha())) {
+			return ResponseEntity.ok().body(cliente);
+		}else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 	
 	//CADASTRA UM NOVO CLIENTE
 	@PostMapping("/cliente")
-	public Cliente criarCliente(@RequestBody Cliente cliente) {
+	public Cliente criarCliente(
+			@RequestBody Cliente cliente) {
 		return cr.save(cliente);
 	}
 	
 	//ATUALIZAR UM CLIENTE
 	@PutMapping("/cliente/{idCliente}")
-	public ResponseEntity<Cliente> updateCliente(@PathVariable(value = "idCliente") Long idCliente,
-			@Valid @RequestBody Cliente clienteId){
+	public ResponseEntity<Cliente> updateCliente(
+			@PathVariable(value = "idCliente") Long idCliente,
+			@Valid @RequestBody Cliente clienteId){ 
 		Cliente cliente = cr.findByIdCliente(idCliente);
-		
+	  
 		cliente.setNomeCliente(clienteId.getNomeCliente());
 		cliente.setBairro(clienteId.getBairro());
 		cliente.setCidade(clienteId.getCidade());
 		cliente.setEmail(clienteId.getEmail());
 		cliente.setEstado(clienteId.getEstado());
 		cliente.setLogradouro(clienteId.getLogradouro());
-		cliente.setRua(clienteId.getRua());
-		cliente.setSenha(clienteId.getSenha());
+		cliente.setRua(clienteId.getRua()); cliente.setSenha(clienteId.getSenha());
 		cliente.setTelefoneCliente(clienteId.getTelefoneCliente());
-		
+		  
 		final Cliente updateCliente = cr.save(cliente);
-		
-		return ResponseEntity.ok(updateCliente);
+	  
+	  return ResponseEntity.ok(updateCliente); 
 	}
+ 
 	
 	//DELETAR UM CLIENTE DESEJADO
-	@DeleteMapping("/cliente/{id}")
-	public Map<String, Boolean> deletarCliente(@PathVariable(value = "id") Long idCliente){
+	@DeleteMapping("/cliente/{idCliente}") public Map<String, Boolean>deletarCliente(
+			@PathVariable(value = "idCliente") Long idCliente){ 
 		Cliente cliente = cr.findByIdCliente(idCliente);
 		cr.delete(cliente);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted",true);
-		return response;
+		response.put("deleted",true); 
 		
+		return response;
 	}
+	 
 }

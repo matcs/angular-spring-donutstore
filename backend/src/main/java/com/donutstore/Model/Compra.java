@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Compra {
 	
@@ -14,6 +17,7 @@ public class Compra {
 	private long idCompra;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	private Cliente idCliente;
 
 	public Compra() {

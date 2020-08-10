@@ -17,7 +17,6 @@ public class Cliente implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(columnDefinition = "CHAR(38)")
     private Long idCliente;
 	
 	@Column(columnDefinition = "VARCHAR(50)")
@@ -47,10 +46,16 @@ public class Cliente implements UserDetails {
 	@Column(columnDefinition = "VARCHAR(40)")
 	private String email; 
 	
-	@Column(columnDefinition = "VARCHAR(40)")
+	@Column(columnDefinition = "VARCHAR(100)")
 	private String senha;
 	
-	
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", nomeCliente=" + nomeCliente + ", telefoneCliente="
+				+ telefoneCliente + ", rua=" + rua + ", logradouro=" + logradouro + ", bairro=" + bairro + ", numero="
+				+ numero + ", cidade=" + cidade + ", estado=" + estado + ", email=" + email + ", senha=" + senha + "]";
+	}
+
 	public String getEmail() {
 		return email;
 	}

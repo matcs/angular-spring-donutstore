@@ -7,10 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@ComponentScan(basePackages = {"com.donutstore.Controller"})
-@ComponentScan(basePackages = {"com.donutstore.Repository"})
+@ComponentScan(basePackages = {"com.donutstore.Controller","com.donutstore.Security"})
 @EntityScan(basePackages = {"com.donutstore.Model"})
-@EnableJpaRepositories(basePackages = {"com.donutstore.Repository"})
+@EnableJpaRepositories("com.donutstore.Repository")
 @RequestMapping("/api")
 @SpringBootApplication
 public class DonutApplication {
